@@ -1,5 +1,5 @@
 import { Cart } from './cart.js';
-import { Router } from './router.js';
+import{ Router} from '../../Services/router.js'
 
 //Llamadas en la carga del dom
 document.addEventListener('DOMContentLoaded', () => {

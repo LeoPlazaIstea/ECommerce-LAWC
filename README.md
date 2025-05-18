@@ -50,7 +50,7 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 - Simulación de proceso de checkout.
 - Funcionamiento tipo SPA.
 
-##UX
+## 📐 UX
 
 
 ## 🛠️ Cómo correr el proyecto

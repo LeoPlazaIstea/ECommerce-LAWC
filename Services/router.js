@@ -1,8 +1,8 @@
 //Exporto las rutas para la navegacion.
 export const Router = (() => {
     const routes = {
-      '/': '/components/views/home.html',
-      '/productos': '/components/views/productosModal.html',
+      '/': '../components/views/home.html',
+      '/productos': '../components/views/productosModal.html',
     };
     //configuro la navegacion en base a la key elegida
     const navigateTo = url => {
@@ -16,7 +16,7 @@ export const Router = (() => {
       const path = window.location.pathname;
       console.log(path)
       //por defecto va al home, si no va en base al pathname
-      const view = routes[path] || '/components/views/home.html';
+      const view = routes[path] || '../components/views/home.html';
       fetch(view)
         .then(res => res.text())
         .then(html => {
