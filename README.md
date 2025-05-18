@@ -23,24 +23,32 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 ├── main.js - Logica principal del index, todo lo que no sean servicios.
 ├── Assets - Ubicacion de los archivos de la pagina (documentos, imagenes locales, etc.).
 ├── Components - Componentes individuales que se cargan en el resto de la pagina.
-│   ├── Navbar - componente de la barra de navegacion en el header.
-│       ├──cart - Carrito
-│           ├── cart.js        ← Lógica del carrito.
-│           ├── cart.css       ← Estilos del sidebar.
-│           └── cart.html      ← Template del carrito,
-├── Services - Servicios accesibles para todos los componentes.
-├── Styles - Estilos generales.
-    ├── Styles.css - .css con los estilos generales.
+│   ├── js - Todo lo que es la logica de cada componente.
+│       ├──cart.js - Logica del carrito.
+│       ├──home.js - Logica del home.
+│       ├──main.js - Logica del main.
+│       └──router.js - router deberia ir en services, despues lo cambio.
+│   ├── styles - Estilos de cada componente.
+│       ├──cart.css - Estilos del carrito.
+│       └──styles.css - Estilos generales.
+│   ├── views - Estilos de cada componente.
+│       ├──cart.html - Template del carrito.
+│       ├──home.html - Template del home.
+│       └──productosModal.html - Template del modal de productos.
+ └── Services - Servicios accesibles para todos los componentes.
+   **└──router.js - HAY QUE MODIFICAR EL SCRIPT Y CAMBIAR LA UBICACION.** 
+
 
 
 
 ## 📌 Funcionalidades
 
-- Interfaz responsive para móvil y escritorio
-- Visualización de productos desde archivo mock
-- Agregar y quitar productos del carrito
-- Ver total de la compra
-- Simulación de proceso de checkout
+- Interfaz responsive para móvil y escritorio.
+- Visualización de productos desde archivo mock.
+- Agregar y quitar productos del carrito.
+- Ver total de la compra.
+- Simulación de proceso de checkout.
+- Funcionamiento tipo SPA.
 
 ##UX
 
