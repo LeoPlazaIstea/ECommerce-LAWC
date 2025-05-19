@@ -36,7 +36,7 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──home.html - Template del home.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──productosModal.html - Template del modal de productos.  
  └── Services - Servicios accesibles para todos los componentes.  
-   **└──router.js - HAY QUE MODIFICAR EL SCRIPT Y CAMBIAR LA UBICACION.** 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──router.js - Servicio que permite el enrutamiento desde index. 
 
 
 
