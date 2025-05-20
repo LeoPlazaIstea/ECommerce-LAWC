@@ -7,14 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi E-commerce</title>
     <link rel="stylesheet" href="./components/Styles/Styles.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <a href="/" data-link>Inicio</a>
-            <a href="/productos" data-link>Productos</a>
-            <button id="toggle-cart">🛒</button>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+                <!--  una vez que terminamos, sacar los tags, esos dos botones son orientativos de momento-->
+                <!-- este tag es donde tienen que estar las cards sin el detalle, osea el listado de productos -->
+                <a href="/" data-link>Inicio</a>
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/ChatGPT Image 19 may 2025, 21_02_13.png" alt="" width="60">
+                </a>
+                <!-- este tag es lo que luego seria el modal -->
+                <a href="/productos" data-link>Productos</a>
+                <button id="toggle-cart" class="btn btn-primary text-white">cart</button>                
+            </div>
+
         </nav>
     </header>
 
@@ -29,6 +39,7 @@
     </aside>
 
     <script type="module" src="/components/js/main.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,24 @@
+{
+  "name": "ecommerce-lawc",
+  "version": "1.0.0",
+  "description": "Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://LeoPlazaIstea@github.com/LeoPlazaIstea/ECommerce-LAWC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LeoPlazaIstea/ECommerce-LAWC/issues"
+  },
+  "homepage": "https://github.com/LeoPlazaIstea/ECommerce-LAWC#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.6"
+  }
+}
