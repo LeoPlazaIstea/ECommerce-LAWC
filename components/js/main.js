@@ -27,13 +27,11 @@ async function initProducts() {
 }
 // Crea las cards donde se muestran los productos
 function createCardHTML(product) {
-    return `<div class="col-md-4 col-sm-6 mb-4">
-                <div class="card h-100 cursor-pointer" data-id="${product.id}">
-                    <img src="${product.image}" class="card-img-top img-fluid" style="max-height: 250px; object-fit: contain;" alt="${product.title}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">${product.title}</h5>
-                    </div>
-                </div>
+    return  `<div class="card h-100 cursor-pointer" data-id="${product.id}">
+              <img src="${product.image}" class="card-img-top img-fluid" style="max-height: 250px; object-fit: contain;" alt="${product.title}">
+              <div class="card-body text-center">
+                <h5 class="card-title">${product.title}</h5>
+              </div>
             </div>`;
 }
 // Crea una card por si hay un error con la carga del producto
@@ -72,17 +70,32 @@ function addOnClick() {
 
 // Cargo los productos obtenidos del array en las cards que creamos con CreateCardHTML()
 function loadProductsHTML(arrayProducts) {
-  if (arrayProducts.length > 0) {
-    container.innerHTML = '<div class="container"><div class="row">';
-    arrayProducts.forEach((product) => {
-      container.innerHTML += createCardHTML(product);
-    });
-    container.innerHTML += '</div></div>';
-    // LLamo los datos para cargar el modal
-    setupCardClickListeners();
-  } else {
-    container.innerHTML = createCardError();
-  }
+    if (arrayProducts.length > 0) {
+        // Limpio el container actual  
+        container.innerHTML = '';
+
+        // Crear la estructura de Bootstrap
+        const containerDiv = document.createElement('div');
+        containerDiv.className = 'container';
+
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'row';
+
+        // Crear cada producto como columna
+        arrayProducts.forEach((product) => {
+          const colDiv = document.createElement('div');
+          colDiv.className = 'col-12 col-sm-6 col-md-4 mb-4';
+          colDiv.innerHTML = createCardHTML(product); // insertar la tarjeta dentro de la columna
+          rowDiv.appendChild(colDiv);
+        });
+
+        containerDiv.appendChild(rowDiv);
+        container.appendChild(containerDiv);
+
+
+        // LLamo los datos para cargar el modal
+        setupCardClickListeners();
+    } else {container.innerHTML = createCardError();}
 }
 
 // Cargo el modal con la info del producto
@@ -140,4 +153,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 });
-
