@@ -17,11 +17,12 @@ export const Cart = (() => {
       total += item.price * item.quantity;
 
       const li = document.createElement('li');
+      li.classList.add("mt-3")
       li.innerHTML = `
         ${item.name} - $${item.price} x ${item.quantity}
-        <button class="decrease-qty" data-id="${item.id}">-</button>
-        <button class="increase-qty" data-id="${item.id}">+</button>
-        <button class="remove-item" data-id="${item.id}">Quitar</button>
+        <button class="btn decrease-qty btn-outline-secondary" data-id="${item.id}">-</button>
+        <button class="btn increase-qty btn-outline-secondary" data-id="${item.id}">+</button>
+        <button class="btn remove-item btn-outline-danger" data-id="${item.id}">Quitar</button>
       `;
       itemsContainer.appendChild(li);
     });
@@ -80,7 +81,7 @@ export const Cart = (() => {
         removeFromCart(id);
       }
       if (e.target.id === 'toggle-cart') {
-        document.getElementById('cart').classList.toggle('hidden');
+        document.getElementById('cart').classList.toggle('invisible');
       }
     });
   };

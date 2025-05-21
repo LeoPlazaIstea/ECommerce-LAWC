@@ -10,8 +10,9 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 
 - **HTML 5**
 - **JavaScript (ES6+)**
-- **Bootstrap**
-- **Git & GitHub** para control de versiones y trabajo colaborativo
+- **NodeJs** Para gestión de librerias.
+- **Bootstrap** Para estilos generales
+- **Git & GitHub** para control de versiones y trabajo colaborativo.
 
 ## 🌐 APIs y Servicios
 
@@ -20,8 +21,8 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 ## 📁 Estructura del proyecto
 
 ├── index.html - Pagina de inicio donde se Cargaran las cards (home).  
-├── main.js - Logica principal del index, todo lo que no sean servicios.  
 ├── Assets - Ubicacion de los archivos de la pagina (documentos, imagenes locales, etc.).  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── logos - Todas las imagenes que sean de logos o nombre de la marca con tipografia especifica.  
 ├── Components - Componentes individuales que se cargan en el resto de la pagina.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── js - Todo lo que es la logica de cada componente.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──cart.js - Logica del carrito.  
@@ -33,7 +34,7 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──styles.css - Estilos generales.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── views - Estilos de cada componente.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──cart.html - Template del carrito.  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──home.html - Template del home.  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──home.html - Template del home.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──productosModal.html - Template del modal de productos.  
  └── Services - Servicios accesibles para todos los componentes.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──router.js - Servicio que permite el enrutamiento desde index. 

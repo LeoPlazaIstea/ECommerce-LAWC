@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi E-commerce</title>
     <link rel="stylesheet" href="./components/Styles/Styles.css" />
+    <link rel="stylesheet" href="/components/Styles/cart.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
@@ -14,11 +15,11 @@
     <header>
         <nav class="navbar navbar-light bg-light">
             <div class="container">
-                <!--  una vez que terminamos, sacar los tags, esos dos botones son orientativos de momento-->
+                <!--  una vez que terminamos, sacar los tags <a> o agregar nuevas rutas para navegación, esos dos botones son orientativos de momento-->
                 <!-- este tag es donde tienen que estar las cards sin el detalle, osea el listado de productos -->
                 <a href="/" data-link>Inicio</a>
                 <a class="navbar-brand" href="/">
-                    <img src="/assets/ChatGPT Image 19 may 2025, 21_02_13.png" alt="" width="60">
+                    <img src="/assets/logos/ChatGPT Image 19 may 2025, 21_02_13.png" alt="" width="60">
                 </a>
                 <!-- este tag es lo que luego seria el modal -->
                 <a href="/productos" data-link>Productos</a>
@@ -29,13 +30,12 @@
     </header>
 
     <main>
+        <!-- render de las rutas -->
         <div id="view"></div>
     </main>
 
-    <aside id="cart" class="cart hidden">
-        <h2>Carrito</h2>
-        <ul id="cart-items"></ul>
-        <p>Total: $<span id="cart-total">0.00</span></p>
+    <aside id="cart" class="cart invisible">
+        <!-- Contenido del carrito -->
     </aside>
 
     <script type="module" src="/components/js/main.js"></script>
