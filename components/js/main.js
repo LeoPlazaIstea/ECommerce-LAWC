@@ -1,16 +1,8 @@
-//LEO
-/*
-- No estoy seguro si mezcle un poco la lógica y no hice el encapsulamiento necesario, pero lo podríamos rever juntos y si es necesario hago las modificaciones.
-- Tengo que corregir el estilo para que me cargue 3 cards por fila
-- Agregar un hover o un puntero diferente para mostrar que las cards son botones
-- Determinar cómo queremos que se vea la página, si un Home con alguna data y después la pestaña de productos por otro lado o si se carga todo directamente al cargar la página. Por el momento lo hice de la segunda manera, pero lo puedo adaptar.
-- Pude agregar el botón del carrito en el modal y que funcione, pero cuando lo testee vi que los productos que agrega no son los correctos.
-*/
-
-
 import { listProducts } from './products.js';
 import { Cart } from './cart.js';
 import{ Router} from '../../Services/router.js';
+
+require('dotenv').config();
 
 const container = document.getElementById('container');
 
