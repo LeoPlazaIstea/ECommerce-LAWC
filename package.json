@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/LeoPlazaIstea/ECommerce-LAWC#readme",
   "dependencies": {
-    "bootstrap": "^5.3.6"
+    "bootstrap": "^5.3.6",
+    "dotenv": "^16.5.0"
   }
 }

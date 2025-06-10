@@ -1,4 +1,19 @@
-<!-- Este va a ser el template del modal para renderizarlo -->
-<h1>Productos</h1>
-<button onclick="addToCart({ id: 1, name: 'Remera', price: 2000 })">Agregar Remera</button>
-<button onclick="addToCart({ id: 2, name: 'Pantalón', price: 5000 })">Agregar Pantalón</button>
+<!-- template del modal de productos -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <span class="badge bg-info text-dark ms-3" id="modalPrice"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" class="img-fluid mb-3" />
+                <p id="modalDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="modalAddToCart">AGREGAR AL CARRITO</button>
+            </div>
+        </div>
+    </div>
+</div>
