@@ -19,7 +19,7 @@ export const Cart = (() => {
       const li = document.createElement('li');
       li.classList.add("mt-3")
       li.innerHTML = `
-        ${item.name} - $${item.price} x ${item.quantity}
+        ${item.title} - $${item.price} x ${item.quantity}
         <button class="btn decrease-qty btn-outline-secondary" data-id="${item.id}">-</button>
         <button class="btn increase-qty btn-outline-secondary" data-id="${item.id}">+</button>
         <button class="btn remove-item btn-outline-danger" data-id="${item.id}">Quitar</button>

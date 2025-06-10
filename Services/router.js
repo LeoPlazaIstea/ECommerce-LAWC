@@ -2,7 +2,7 @@
 export const Router = (() => {
     const routes = {
     '/': { view: '../components/views/home.html', script: '../components/js/home.js' },
-    '/productos': { view: '../components/views/productosModal.html', script: '../components/js/productosModal.js' },
+    '/productos': { view: '../components/views/productsModal.html', script: '../components/js/productsModal.js' },
   };
 
   const navigateTo = url => {
