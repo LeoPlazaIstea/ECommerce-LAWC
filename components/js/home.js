@@ -62,7 +62,8 @@ function setupCardClickListeners() {
       const product = products.find(p => p.id === id);
       if (!product) return;
       sessionStorage.setItem('selectedProduct', JSON.stringify(product));
-      Router.navigate('/productos');
+      sessionStorage.setItem('scrollPos', window.scrollY);
+      Router.navigateTo('/productos');
     });
   });
 }
@@ -71,6 +72,11 @@ export async function init() {
   try {
     products = await listProducts();
     loadProductsHTML(products);
+    const savedPos = sessionStorage.getItem('scrollPos');
+    if (savedPos !== null) {
+      window.scrollTo(0, parseInt(savedPos, 10));
+      sessionStorage.removeItem('scrollPos');
+    }
   } catch (err) {
     const container = document.getElementById('home-container');
     if (container) container.innerHTML = createCardError();

@@ -1,4 +1,5 @@
 import { Cart } from './cart.js';
+import { Router } from '../../Services/router.js';
 
 export async function init() {
   const stored = sessionStorage.getItem('selectedProduct');
@@ -13,6 +14,10 @@ export async function init() {
 
   const modal = new bootstrap.Modal(document.getElementById('productModal'));
   modal.show();
+
+  document.getElementById('productModal').addEventListener('hidden.bs.modal', () => {
+    Router.navigateTo('/');
+  });
 
   const btnAdd = document.getElementById('modalAddToCart');
   btnAdd.addEventListener('click', () => {
