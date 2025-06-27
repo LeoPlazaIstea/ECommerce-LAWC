@@ -1,25 +1,24 @@
-/* estilos minimos para poder ver HAY QUE CAMBIARLOS!!!!!! */
+/* estilos mínimos para poder ver HAY QUE CAMBIARLOS!!!!!! */
 
-
-  .cart {
-    position: fixed;
-    top: 50px;
-    right: 0;
-    width: 450px;
-    height: 88vh;
-    background: white;
-    border-left: 2px solid #ddd;
-    padding: 1em;
-    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
-    max-height: 100vh;
-    overflow-y: auto;
-    transform: translateX(100%);             
-    transition: transform 0.4s ease-in-out;  
-    z-index: 1050;
-  } 
+.cart {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: 450px;
+  height: 88vh;
+  background: white;
+  border-left: 2px solid #ddd;
+  padding: 1em;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  max-height: 100vh;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s ease-in-out;
+  z-index: 1050;
+}
 
 .cart.visible {
-  transform: translateX(0);                /* se muestra */
+  transform: translateX(0); /* se muestra */
 }
 
 .product-title {
@@ -40,8 +39,8 @@
 }
 
 .product-title:hover span {
-  text-overflow: unset;     /* ← liberamos la elipsis */
-  overflow: visible;        /* ← permitimos que el contenido se muestre */
+  text-overflow: unset; /* ← liberamos la elipsis */
+  overflow: visible; /* ← permitimos que el contenido se muestre */
   animation: scroll-title 3s forwards linear;
 }
 
@@ -51,5 +50,25 @@
   }
   to {
     transform: translateX(-100%);
+  }
+}
+
+/* Hacemos el carrito más flexible en pantallas pequeñas */
+@media (max-width: 768px) {
+  .cart {
+    width: 100%;
+    top: 0;
+    height: 100vh;
+    padding: 0.5em;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart {
+    width: 100%;
+    top: 0;
+    height: 100vh;
+    padding: 0.5em;
+    box-shadow: none;
   }
 }
