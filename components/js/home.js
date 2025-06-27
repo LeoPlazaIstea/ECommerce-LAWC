@@ -1,7 +1,9 @@
 import { listProducts } from './products.js';
-import { Router } from '../../Services/router.js';
+import { Cart } from './cart.js';
 
 let products = [];
+let currentPage = 1;
+const productsPerPage = 12;
 
 function createCardHTML(product) {
   return `<div class="card h-100 cursor-pointer" data-id="${product.id}">
@@ -27,55 +29,132 @@ function createCardError() {
           </div>`;
 }
 
-function loadProductsHTML(arrayProducts) {
+function renderProductsPage(page) {
   const container = document.getElementById('home-container');
-  if (!container) return;
+  const pagination = document.getElementById('pagination');
+  if (!container || !pagination) return;
 
-  if (arrayProducts.length > 0) {
-    container.innerHTML = '';
-    const containerDiv = document.createElement('div');
-    containerDiv.className = 'container';
+  const start = (page - 1) * productsPerPage;
+  const end = start + productsPerPage;
+  const productsToShow = products.slice(start, end);
 
-    const rowDiv = document.createElement('div');
-    rowDiv.className = 'row';
+  container.innerHTML = '';
+  const containerDiv = document.createElement('div');
+  containerDiv.className = 'container';
 
-    arrayProducts.forEach((product) => {
-      const colDiv = document.createElement('div');
-      colDiv.className = 'col-12 col-sm-6 col-md-4 mb-4';
-      colDiv.innerHTML = createCardHTML(product);
-      rowDiv.appendChild(colDiv);
+  const rowDiv = document.createElement('div');
+  rowDiv.className = 'row';
+
+  productsToShow.forEach((product) => {
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-12 col-sm-6 col-md-3 mb-4';
+    colDiv.innerHTML = createCardHTML(product);
+    rowDiv.appendChild(colDiv);
+  });
+
+  containerDiv.appendChild(rowDiv);
+  container.appendChild(containerDiv);
+
+  setupCardClickListeners();
+  renderPagination();
+}
+
+function renderPagination() {
+  const pagination = document.getElementById('pagination');
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  pagination.innerHTML = '';
+
+  if (totalPages <= 1) return;
+
+  const createButton = (text, pageNum, disabled = false, active = false) => {
+    const btn = document.createElement('button');
+    btn.textContent = text;
+    btn.className = 'btn btn-outline-light mx-1';
+    if (disabled) btn.disabled = true;
+    if (active) btn.classList.add('active');
+
+    btn.addEventListener('click', () => {
+      currentPage = pageNum;
+      renderProductsPage(currentPage);
     });
 
-    containerDiv.appendChild(rowDiv);
-    container.appendChild(containerDiv);
+    return btn;
+  };
 
-    setupCardClickListeners();
-  } else {
-    container.innerHTML = createCardError();
+  pagination.appendChild(createButton('Anterior', currentPage - 1, currentPage === 1));
+
+  for (let i = 1; i <= totalPages; i++) {
+    pagination.appendChild(createButton(i, i, false, currentPage === i));
   }
+
+  pagination.appendChild(createButton('Siguiente', currentPage + 1, currentPage === totalPages));
 }
+
+// function setupCardClickListeners() {
+//   document.querySelectorAll('.card[data-id]').forEach(card => {
+//     card.addEventListener('click', () => {
+//       const id = parseInt(card.dataset.id);
+//       const product = products.find(p => p.id === id);
+//       if (!product) return;
+
+//       // Rellenar el modal con los datos del producto
+//       document.getElementById('modalTitle').textContent = product.title;
+//       document.getElementById('modalPrice').textContent = `$ ${product.price}`;
+//       document.getElementById('modalImage').src = product.image;
+//       document.getElementById('modalImage').alt = product.title;
+//       document.getElementById('modalDescription').textContent = product.description;
+//       document.getElementById('modalAddToCart').dataset.id = product.id;
+
+//       const modal = new bootstrap.Modal(document.getElementById('productModal'));
+//       modal.show();
+//     });
+//   });
+// }
+
+// nueva version de setupCardListeners
 
 function setupCardClickListeners() {
   document.querySelectorAll('.card[data-id]').forEach(card => {
-    card.addEventListener('click', () => {
-      const id = parseInt(card.dataset.id);
-      const product = products.find(p => p.id === id);
-      if (!product) return;
-      sessionStorage.setItem('selectedProduct', JSON.stringify(product));
-      sessionStorage.setItem('scrollPos', window.scrollY);
-      Router.navigateTo('/productos');
+  card.addEventListener('click', () => {
+    const id = parseInt(card.dataset.id);
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+
+    // Guardamos el producto en sessionStorage
+    sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+
+    // Mostramos el modal directamente sin cambiar la vista
+    import('./productsModal.js').then(module => {
+      module.init();
     });
   });
+});
+
 }
+
 
 export async function init() {
   try {
     products = await listProducts();
-    loadProductsHTML(products);
+    renderProductsPage(currentPage);
+
     const savedPos = sessionStorage.getItem('scrollPos');
     if (savedPos !== null) {
       window.scrollTo(0, parseInt(savedPos, 10));
       sessionStorage.removeItem('scrollPos');
+    }
+
+    const btnAdd = document.getElementById('modalAddToCart');
+    if (btnAdd) {
+      btnAdd.addEventListener('click', () => {
+        const id = parseInt(btnAdd.dataset.id);
+        const product = products.find(p => p.id === id);
+        if (product) {
+          Cart.addToCart(product);
+          const modalInstance = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+          modalInstance.hide();
+        }
+      });
     }
   } catch (err) {
     const container = document.getElementById('home-container');
@@ -83,3 +162,5 @@ export async function init() {
     console.error('Error al cargar productos:', err);
   }
 }
+
+

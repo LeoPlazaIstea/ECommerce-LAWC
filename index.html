@@ -11,39 +11,60 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="bg-secondary">
     <header>
-        <nav class="navbar navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-light bg-light custom-height position-relative">
+            <div class="container position-relative">
                 <!--  una vez que terminamos, sacar los tags <a> o agregar nuevas rutas para navegación, esos dos botones son orientativos de momento-->
                 <!-- este tag es donde tienen que estar las cards sin el detalle, osea el listado de productos -->
-                <a href="/" data-link>Inicio</a>
-                <a class="navbar-brand" href="/">
-                    <img src="/assets/logos/ChatGPT Image 19 may 2025, 21_02_13.png" alt="" width="60">
+                <a class="navbar-brand position-absolute start-50 translate-middle-x" href="/">
+                    <img src="/assets/logos/ChatGPT Image 19 may 2025, 21_02_13.png" alt="">
                 </a>
-                <!-- este tag es lo que luego seria el modal -->
-                <a href="/productos" data-link>Productos</a>
-                <button id="toggle-cart" class="btn btn-primary text-white">cart</button>                
+                <button id="toggle-cart" class="btn btn-outline-dark position-absolute end-0">cart</button>
             </div>
 
         </nav>
     </header>
 
-    <main>
+    <main class="bg-secondary">
         <!-- render de las rutas -->
         <div id="view">
-            
+
         </div>
-                
+
         </div>
     </main>
 
-    <aside id="cart" class="cart invisible">
+    <!-- Modal de producto -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <span class="badge bg-info text-dark ms-3" id="modalPrice"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" class="img-fluid mb-3" />
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="modalAddToCart">AGREGAR AL CARRITO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <aside id="cart" class="cart bg-light">
         <!-- Contenido del carrito -->
     </aside>
     <!--  -->
     <script type="module" src="/components/js/main.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

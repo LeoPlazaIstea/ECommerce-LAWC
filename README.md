@@ -10,8 +10,9 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 
 - **HTML 5**
 - **JavaScript (ES6+)**
-- **NodeJs** Para gestión de librerias.
 - **Bootstrap** Para estilos generales
+- **SweetAlert2** Para estilos de modales de compra
+- **Bootstrap** Para estilos de pop-up de cambios en el carrito
 - **Git & GitHub** para control de versiones y trabajo colaborativo.
 
 ## 🌐 APIs y Servicios
@@ -28,15 +29,16 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──cart.js - Logica del carrito.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──home.js - Logica del home.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──main.js - Logica del main.  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──router.js - router deberia ir en services, despues lo cambio.  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──products.js - Logica de las cards.  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──productsModal.js - Logica de modal para un producto.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── styles - Estilos de cada componente.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──cart.css - Estilos del carrito.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──styles.css - Estilos generales.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── views - Estilos de cada componente.  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──cart.html - Template del carrito.  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──home.html - Template del home.  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──productosModal.html - Template del modal de productos.  
- └── Services - Servicios accesibles para todos los componentes.  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├──home.html - Template del home.  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──productsModal.html - Template del modal de productos.  
+└── Services - Servicios accesibles para todos los componentes.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──router.js - Servicio que permite el enrutamiento desde index. 
 
 
@@ -54,7 +56,7 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 ## 📐 UX
 
 
-## 🛠️ Cómo correr el proyecto
+## 🛠️ Cómo descargar el proyecto
 
 1. Clonar el repositorio:
    ```bash

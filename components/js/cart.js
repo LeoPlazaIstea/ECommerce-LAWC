@@ -1,3 +1,4 @@
+
 export const Cart = (() => {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -19,19 +20,25 @@ export const Cart = (() => {
       const li = document.createElement('li');
       li.classList.add("mt-3")
       li.innerHTML = `
-        ${item.title} - $${item.price} x ${item.quantity}
-        <button class="btn decrease-qty btn-outline-secondary" data-id="${item.id}">-</button>
-        <button class="btn increase-qty btn-outline-secondary" data-id="${item.id}">+</button>
-        <button class="btn remove-item btn-outline-danger" data-id="${item.id}">Quitar</button>
-      `;
+          <div class="product-title">
+            <span>${item.title}</span>
+          </div>
+          ${item.price} x ${item.quantity} - 
+          <button class="btn decrease-qty btn-outline-secondary btn-sm" data-id="${item.id}">-</button>
+          <button class="btn increase-qty btn-outline-secondary btn-sm" data-id="${item.id}">+</button>
+          <button class="btn remove-item btn-outline-danger btn-sm" data-id="${item.id}">Quitar</button>
+        `;
       itemsContainer.appendChild(li);
     });
+
     ///renderizo el monto total de todos los productos sumados
     totalEl.textContent = total.toFixed(2);
   };
 
   const addToCart = (product) => {
+    console.log(`aca entra ${JSON.stringify(product)}`)
     const index = cart.findIndex(item => item.id === product.id);
+    console.log(cart)
     /// si el index es 0 es porque ya hay  un producto
     if (index >= 0) {
       cart[index].quantity += 1;
@@ -81,19 +88,111 @@ export const Cart = (() => {
         removeFromCart(id);
       }
       if (e.target.id === 'toggle-cart') {
-        document.getElementById('cart').classList.toggle('invisible');
+        const cartEl = document.getElementById('cart');
+        cartEl.classList.toggle('visible');
+      }
+      if (e.target.id === 'checkout-btn') {
+        if (cart.length === 0) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Tu carrito está vacío',
+            text: 'Agregá productos antes de finalizar la compra.',
+            confirmButtonColor: '#3085d6'
+          });
+        } else {
+          const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+          const summary = cart.map(item => `${item.title} x${item.quantity}`).join('<br>');
+
+          Swal.fire({
+            title: '¿Confirmar compra?',
+            html: `<strong>Productos:</strong><br>${summary}<hr><strong>Total:</strong> $${total}`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, comprar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#198754',
+            cancelButtonColor: '#d33'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                icon: 'success',
+                title: '¡Compra realizada!',
+                text: 'Gracias por tu compra.',
+                confirmButtonColor: '#198754'
+              });
+
+              // Limpiar carrito
+              cart.length = 0;
+              saveCart();
+              renderCart();
+            } else {
+              Swal.fire({
+                icon: 'info',
+                title: 'Compra cancelada',
+                text: 'No se realizó ningún cargo.',
+                confirmButtonColor: '#6c757d'
+              });
+            }
+          });
+        }
       }
     });
   };
 
   const init = () => {
-    setupListeners();
-    renderCart();
+    const checkReady = setInterval(() => {
+      const itemsContainer = document.getElementById('cart-items');
+      const totalEl = document.getElementById('cart-total');
+
+      if (itemsContainer && totalEl) {
+        clearInterval(checkReady);
+        setupListeners();
+        renderCart();
+      }
+    }, 50);
   };
 
-  return { init, addToCart };
+
+  // Obtenemos la cantidad de un producto segun si ID
+  const getQuantity = (id) => {
+    const item = cart.find(p => p.id === id);
+    return item ? item.quantity : 0;
+  };
+
+  // Funcion para descontar un producto del cart y que tire la alerta con toastify
+  const decreaseFromCart = (id) => {
+    const index = cart.findIndex(p => p.id === id);
+    if (index !== -1) {
+      cart[index].quantity -= 1;
+
+      if (cart[index].quantity <= 0) {
+        const removedTitle = cart[index].title;
+        cart.splice(index, 1); // lo elimino completamente
+        Toastify({
+          text: `Eliminaste ${removedTitle} del carrito`,
+          duration: 3000,
+          gravity: "bottom",
+          position: "right",
+          style: { background: "#dc3545" } // rojo
+        }).showToast();
+      } else {
+        Toastify({
+          text: `Quitaste un ${cart[index].title} del carrito`,
+          duration: 3000,
+          gravity: "bottom",
+          position: "right",
+          style: { background: "#ffc107" } // amarillo
+        }).showToast();
+      }
+
+      saveCart();
+      renderCart();
+    }
+  };
+
+  return { init, addToCart, getQuantity, decreaseFromCart };
 })();
 
 // Hacemos accesible la función en el global scope para onclick en views
 window.addToCart = Cart.addToCart;
-    
+

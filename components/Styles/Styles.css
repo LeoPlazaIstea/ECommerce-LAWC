@@ -1,6 +1,40 @@
+* {
+  margin: 0;
+  padding: 0; 
+
+}
+
 .card.cursor-pointer:hover {
-  border: 2px solid #007bff; /* azul Bootstrap */
+  border: 2px solid #212529; /* azul Bootstrap */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: border 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+    div{
+      background-color: #6c757d;
+        color: #f8f9fa;
+    }
+}
+
+
+.navbar.custom-height {
+  height: 50px;
+  min-height: 50px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.navbar.custom-height .navbar-brand img {
+  height: 50px;        
+  width: auto;        
+}
+
+.modal-backdrop.show {
+  opacity: 0.7;
+  background-color: #000;
+}
+
+.toastify {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }

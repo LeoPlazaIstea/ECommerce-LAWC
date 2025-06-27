@@ -1,19 +1,23 @@
 <!-- template del modal de productos -->
 <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle"></h5>
-                <span class="badge bg-info text-dark ms-3" id="modalPrice"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img id="modalImage" class="img-fluid mb-3" />
-                <p id="modalDescription"></p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="modalAddToCart">AGREGAR AL CARRITO</button>
-            </div>
-        </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <span class="badge bg-info text-dark ms-3" id="modalPrice"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <img id="modalImage" class="img-fluid mb-3" />
+        <p id="modalDescription"></p>
+      </div>
+
+      <div class="modal-footer">
+        <!-- Aquí se insertan dinámicamente los botones (+ / - o AGREGAR AL CARRITO) desde productsModal.js -->
+      </div>
+
     </div>
+  </div>
 </div>
