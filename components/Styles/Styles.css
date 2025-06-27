@@ -3,6 +3,16 @@
   padding: 0;
 }
 
+/* Fuente base para todo el sitio */
+body {
+  font-family: 'Inconsolata', monospace;
+}
+
+/* Fuente para títulos */
+h1, h2, h3, h4, h5, h6, .mainTitle, .card-title, .modal-title {
+  font-family: 'Lora', serif;
+}
+
 .card.cursor-pointer:hover {
   border: 2px solid #212529; /* azul Bootstrap */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);

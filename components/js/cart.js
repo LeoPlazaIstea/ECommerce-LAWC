@@ -19,11 +19,12 @@ export const Cart = (() => {
 
       const li = document.createElement('li');
       li.classList.add("mt-3")
+      li.classList.add("list-group-item")
       li.innerHTML = `
           <div class="product-title">
-            <span>${item.title}</span>
+            <span><b>${item.quantity}</b> x ${item.title} - $${item.unitPrice}</span>
           </div>
-          ${item.price} x ${item.quantity} - 
+           Total: $${item.price}
           <button class="btn decrease-qty btn-outline-secondary btn-sm" data-id="${item.id}">-</button>
           <button class="btn increase-qty btn-outline-secondary btn-sm" data-id="${item.id}">+</button>
           <button class="btn remove-item btn-outline-danger btn-sm" data-id="${item.id}">Quitar</button>
@@ -36,15 +37,20 @@ export const Cart = (() => {
   };
 
   const addToCart = (product) => {
-    console.log(`aca entra ${JSON.stringify(product)}`)
+    //console.log(`producto ${JSON.stringify(product)}`)
     const index = cart.findIndex(item => item.id === product.id);
-    console.log(cart)
+    //console.log(cart)
     /// si el index es 0 es porque ya hay  un producto
     if (index >= 0) {
       cart[index].quantity += 1;
-      console.log(cart[index].quantity)
+      cart[index].price = cart[index].unitPrice * cart[index].quantity;
     } else {
-      cart.push({ ...product, quantity: 1 });
+      cart.push({ 
+                  ...product, 
+                  quantity: 1, 
+                  unitPrice: product.price, 
+                  price: product.price 
+                });
     }
     saveCart();
     renderCart();
@@ -61,12 +67,13 @@ export const Cart = (() => {
     //early return para cortar la ejecucion si no hay producto
     if (!item) return;
 
-
     item.quantity += delta;
+
     if (item.quantity <= 0) {
       // si no hay lo saco del carrito
       removeFromCart(id);
     } else {
+      item.price = item.unitPrice * item.quantity; 
       saveCart();
       renderCart();
     }

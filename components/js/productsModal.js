@@ -34,26 +34,28 @@ export async function init() {
   const stored = sessionStorage.getItem('selectedProduct');
   if (!stored) return;
 
-  const product = JSON.parse(stored);
-  renderModalContent(product);
-
   const modal = new bootstrap.Modal(document.getElementById('productModal'));
+  const product = JSON.parse(stored);
+  renderModalContent(product, modal);
+
   modal.show();
+
+  refreshModalContent(product, modal);
 }
 
 // Esta función renderiza todo el contenido del modal (título, imagen, etc.)
-function renderModalContent(product) {
+function renderModalContent(product, modal) {
   document.getElementById('modalTitle').textContent = product.title;
   document.getElementById('modalPrice').textContent = `$ ${product.price}`;
   document.getElementById('modalImage').src = product.image;
   document.getElementById('modalImage').alt = product.title;
   document.getElementById('modalDescription').textContent = product.description;
 
-  refreshModalContent(product);
+  refreshModalContent(product, modal);
 }
 
 // Esta función actualiza dinámicamente solo la parte del footer (botones + / -)
-function refreshModalContent(product) {
+function refreshModalContent(product, modal) {
   const quantity = Cart.getQuantity(product.id);
   const container = document.querySelector('.modal-footer');
   container.innerHTML = '';
@@ -65,7 +67,11 @@ function refreshModalContent(product) {
     btnRemove.className = 'btn btn-danger';
     btnRemove.onclick = () => {
       Cart.decreaseFromCart(product.id);
-      refreshModalContent(product);
+      if(quantity === 1){
+        modal.hide();
+        return;
+      }
+      refreshModalContent(product, modal);
     };
 
     const count = document.createElement('span');
@@ -84,7 +90,7 @@ function refreshModalContent(product) {
         position: "right",
         style: { background: "#28a745" }
       }).showToast();
-      refreshModalContent(product);
+      refreshModalContent(product, modal);
     };
 
     container.append(btnRemove, count, btnAdd);
@@ -103,7 +109,8 @@ function refreshModalContent(product) {
         position: "right",
         style: { background: "#28a745" }
       }).showToast();
-      refreshModalContent(product);
+      // refreshModalContent(product);
+      modal.hide();
     };
 
     container.appendChild(btnAdd);

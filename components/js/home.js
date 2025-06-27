@@ -29,14 +29,15 @@ function createCardError() {
           </div>`;
 }
 
-function renderProductsPage(page) {
+function renderProductsPage(page, customList = null) {
   const container = document.getElementById('home-container');
   const pagination = document.getElementById('pagination');
   if (!container || !pagination) return;
 
+  const list = Array.isArray(customList) ? customList : products;
   const start = (page - 1) * productsPerPage;
   const end = start + productsPerPage;
-  const productsToShow = products.slice(start, end);
+  const productsToShow = list.slice(start, end);
 
   container.innerHTML = '';
   const containerDiv = document.createElement('div');
@@ -56,12 +57,13 @@ function renderProductsPage(page) {
   container.appendChild(containerDiv);
 
   setupCardClickListeners();
-  renderPagination();
+  renderPagination(list); // 👈 modificamos esto también
 }
 
-function renderPagination() {
+
+function renderPagination(filteredList = products) {
   const pagination = document.getElementById('pagination');
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const totalPages = Math.ceil(filteredList.length / productsPerPage);
   pagination.innerHTML = '';
 
   if (totalPages <= 1) return;
@@ -75,7 +77,7 @@ function renderPagination() {
 
     btn.addEventListener('click', () => {
       currentPage = pageNum;
-      renderProductsPage(currentPage);
+      renderProductsPage(currentPage, filteredList);
     });
 
     return btn;
@@ -115,20 +117,20 @@ function renderPagination() {
 
 function setupCardClickListeners() {
   document.querySelectorAll('.card[data-id]').forEach(card => {
-  card.addEventListener('click', () => {
-    const id = parseInt(card.dataset.id);
-    const product = products.find(p => p.id === id);
-    if (!product) return;
+    card.addEventListener('click', () => {
+      const id = parseInt(card.dataset.id);
+      const product = products.find(p => p.id === id);
+      if (!product) return;
 
-    // Guardamos el producto en sessionStorage
-    sessionStorage.setItem('selectedProduct', JSON.stringify(product));
+      // Guardamos el producto en sessionStorage
+      sessionStorage.setItem('selectedProduct', JSON.stringify(product));
 
-    // Mostramos el modal directamente sin cambiar la vista
-    import('./productsModal.js').then(module => {
-      module.init();
+      // Mostramos el modal directamente sin cambiar la vista
+      import('./productsModal.js').then(module => {
+        module.init();
+      });
     });
   });
-});
 
 }
 
@@ -138,6 +140,13 @@ export async function init() {
     products = await listProducts();
     renderProductsPage(currentPage);
 
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = products.filter(p =>
+        p.title.toLowerCase().includes(query)
+      );
+      renderProductsPage(currentPage, filtered);
+    });
     const savedPos = sessionStorage.getItem('scrollPos');
     if (savedPos !== null) {
       window.scrollTo(0, parseInt(savedPos, 10));
