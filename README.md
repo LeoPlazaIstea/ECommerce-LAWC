@@ -55,6 +55,7 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 
 ## 📐 UX
 - Bootstrap
+- GoogleFonts (Inconsolata & Lora)
 - SweetAlert2
 - Toastify
 
