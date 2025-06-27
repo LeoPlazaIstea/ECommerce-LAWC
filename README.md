@@ -54,7 +54,9 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 - Funcionamiento tipo SPA.
 
 ## 📐 UX
-
+- Bootstrap
+- SweetAlert2
+- Toastify
 
 ## 🛠️ Cómo descargar el proyecto
 
