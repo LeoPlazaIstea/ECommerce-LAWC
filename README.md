@@ -3,8 +3,8 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 
 ## 🧑‍💻 Integrantes
 
-- **Martín Ezequiel Lavaggi** - Tareas asignadas
-- **Plaza Leonel Federico** - Tareas asignadas
+- **Martín Ezequiel Lavaggi**
+- **Plaza Leonel Federico**
 
 ## 🚀 Tecnologías utilizadas
 
@@ -48,7 +48,7 @@ Proyecto de Ecommerce para la materia laboratorio de Aplicaciones Web Cliente
 
 - Interfaz responsive para móvil y escritorio.
 - Visualización de productos desde archivo mock.
-- Agregar y quitar productos del carrito.
+- Agregar y quitar productos del carrito con icono dinamico y contador.
 - Ver total de la compra.
 - Simulación de proceso de checkout.
 - Funcionamiento tipo SPA.
