@@ -20,13 +20,16 @@ export const Cart = (() => {
       const li = document.createElement('li');
       li.classList.add("mt-3")
       li.classList.add("list-group-item")
+      li.classList.add("d-flex")
+      li.classList.add("justify-content-between")
+      li.classList.add("align-items-center")
       li.innerHTML = `
           <div class="product-title">
             <span><b>${item.quantity}</b> x ${item.title} - $${item.unitPrice}</span>
           </div>
            Total: $${item.price}
           <button class="btn decrease-qty btn-outline-secondary btn-sm" data-id="${item.id}">-</button>
-          <button class="btn increase-qty btn-outline-secondary btn-sm" data-id="${item.id}">+</button>
+          <button class="btn mx-1 increase-qty btn-outline-secondary btn-sm" data-id="${item.id}">+</button>
           <button class="btn remove-item btn-outline-danger btn-sm" data-id="${item.id}">Quitar</button>
         `;
       itemsContainer.appendChild(li);
@@ -34,6 +37,7 @@ export const Cart = (() => {
 
     ///renderizo el monto total de todos los productos sumados
     totalEl.textContent = total.toFixed(2);
+    updateCartIcon();
   };
 
   const addToCart = (product) => {
@@ -45,12 +49,12 @@ export const Cart = (() => {
       cart[index].quantity += 1;
       cart[index].price = cart[index].unitPrice * cart[index].quantity;
     } else {
-      cart.push({ 
-                  ...product, 
-                  quantity: 1, 
-                  unitPrice: product.price, 
-                  price: product.price 
-                });
+      cart.push({
+        ...product,
+        quantity: 1,
+        unitPrice: product.price,
+        price: product.price
+      });
     }
     saveCart();
     renderCart();
@@ -73,7 +77,7 @@ export const Cart = (() => {
       // si no hay lo saco del carrito
       removeFromCart(id);
     } else {
-      item.price = item.unitPrice * item.quantity; 
+      item.price = item.unitPrice * item.quantity;
       saveCart();
       renderCart();
     }
@@ -94,7 +98,7 @@ export const Cart = (() => {
         const id = parseInt(e.target.dataset.id);
         removeFromCart(id);
       }
-      if (e.target.id === 'toggle-cart') {
+      if (e.target.closest('#toggle-cart')) {
         const cartEl = document.getElementById('cart');
         cartEl.classList.toggle('visible');
       }
@@ -196,10 +200,27 @@ export const Cart = (() => {
       renderCart();
     }
   };
+  const updateCartIcon = () => {
+    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const badge = document.getElementById('cart-count');
+    const emptyIcon = document.getElementById('cart-icon-empty');
+    const fullIcon = document.getElementById('cart-icon-full');
+
+    badge.textContent = totalCount;
+
+    if (totalCount > 0) {
+      fullIcon.classList.remove('d-none');
+      emptyIcon.classList.add('d-none');
+      badge.classList.remove('d-none');
+    } else {
+      fullIcon.classList.add('d-none');
+      emptyIcon.classList.remove('d-none');
+      badge.classList.add('d-none');
+    }
+  };
 
   return { init, addToCart, getQuantity, decreaseFromCart };
 })();
 
 // Hacemos accesible la función en el global scope para onclick en views
 window.addToCart = Cart.addToCart;
-
